@@ -25,41 +25,41 @@ from abc import ABC, abstractmethod
 
 class AccountTypeAbstractBaseClass(ABC):
     @abstractmethod
-    def interest_calculation(self):
+    def interest_calculation(self) -> str:
         """
         Interest Calculation
         """
 
 
 class SavingAccountType(AccountTypeAbstractBaseClass):
-    def interest_calculation(self):
+    def interest_calculation(self) -> str:
         return "5%"
 
 
 class CurrentAccountType(AccountTypeAbstractBaseClass):
-    def interest_calculation(self):
+    def interest_calculation(self) -> str:
         return "0%"
 
 
 class AccountCreator(ABC):
     @abstractmethod
-    def create_account(self):
+    def create_account(self) -> AccountTypeAbstractBaseClass:
         """
         Create Account
         """
 
-    def get_interest(self):
+    def get_interest(self) -> str:
         account = self.create_account()
         return account.interest_calculation()
 
 
 class SavingAccountTypeFactory(AccountCreator):
-    def create_account(self):
+    def create_account(self) -> AccountTypeAbstractBaseClass:
         return SavingAccountType()
 
 
 class CurrentAccountTypeFactory(AccountCreator):
-    def create_account(self):
+    def create_account(self) -> AccountTypeAbstractBaseClass:
         return CurrentAccountType()
 
 
